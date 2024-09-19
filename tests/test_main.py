@@ -16,8 +16,8 @@ def category():
 def test_init(products, category):
     assert products.name == "cola"
     assert products.description == "вкусная"
-    assert category.name == 'drinks'
+    assert category.name == "drinks"
     assert category.description == "for drink"
     assert category.products == ["cola", "fanta", "sprite"]
-    assert Product.count_products == 6
-    assert Product.count_category == 3
+    assert Category.count_products == 6
+    assert Category.count_category == 3
