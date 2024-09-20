@@ -9,15 +9,20 @@ def products():
 
 
 @pytest.fixture()
-def category():
+def category_1():
     return Category("drinks", "for drink", ["cola", "fanta", "sprite"])
 
 
-def test_init(products, category):
+@pytest.fixture()
+def category_2():
+    return Category("phones", "mobile phones", ["apple", "samsung", "xiaomi"])
+
+
+def test_init(products, category_1, category_2):
     assert products.name == "cola"
     assert products.description == "вкусная"
-    assert category.name == "drinks"
-    assert category.description == "for drink"
-    assert category.products == ["cola", "fanta", "sprite"]
+    assert category_1.name == "drinks"
+    assert category_1.description == "for drink"
+    assert category_1.products == ["cola", "fanta", "sprite"]
     assert Category.count_products == 6
-    assert Category.count_category == 3
+    assert Category.count_category == 2
