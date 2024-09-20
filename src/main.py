@@ -5,7 +5,6 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
-        Category.count_products += quantity
 
 
 class Category:
@@ -16,4 +15,6 @@ class Category:
         self.name = name
         self.description = description
         self.products = products
-        Category.count_category += len(products)
+
+        Category.count_category += 1
+        Category.count_products += len(products)
