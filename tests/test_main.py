@@ -67,6 +67,23 @@ def answer():
     return str(category1)
 
 
+# @pytest.fixture()
+# def answer3():
+#     product1 = Product(
+#         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+#     )
+#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+#     category1 = Category(
+#         "Смартфоны",
+#         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+#         [product1, product2]
+#     )
+#     smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
+#
+#     category1.add_product(smartphone3)
+#     return category1.count_products
+
+
 @pytest.fixture()
 def answer2():
     product1 = Product(
@@ -95,3 +112,7 @@ def test_init(products, answer, answer1, answer2, imitation_lawngrass_class, imi
     assert imitation_lawngrass_class.germination_period == "5 дней"
     assert imitation_lawngrass_class.color == "Темно-зеленый"
     assert test_for_method_add_1 == 2580000.0
+    quantity_before_adding = products.count_products
+    products.add_product(imitation_smartphone_class)
+    products.add_product(imitation_lawngrass_class)
+    assert products.count_products == quantity_before_adding + 2
