@@ -1,5 +1,4 @@
 import pytest
-import unittest
 from src.main import Category, Product, Smartphone, LawnGrass
 
 
@@ -42,7 +41,7 @@ def imitation_lawngrass_class():
 
 
 @pytest.fixture()
-def answer1():
+def imitation_instance_product_class():
     product = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
@@ -51,7 +50,7 @@ def answer1():
 
 
 @pytest.fixture()
-def answer():
+def imitation_instance_category_class():
     product1 = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
@@ -67,25 +66,8 @@ def answer():
     return str(category1)
 
 
-# @pytest.fixture()
-# def answer3():
-#     product1 = Product(
-#         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-#     )
-#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-#     category1 = Category(
-#         "Смартфоны",
-#         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-#         [product1, product2]
-#     )
-#     smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
-#
-#     category1.add_product(smartphone3)
-#     return category1.count_products
-
-
 @pytest.fixture()
-def answer2():
+def adding_two_copies():
     product1 = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
@@ -94,16 +76,16 @@ def answer2():
     return product1 + product2
 
 
-def test_init(products, answer, answer1, answer2, imitation_lawngrass_class, imitation_smartphone_class,
-              test_for_method_add_1):
+def test_init(products, imitation_instance_category_class, imitation_instance_product_class, adding_two_copies,
+              imitation_lawngrass_class, imitation_smartphone_class, test_for_method_add_1):
     assert products.products == [
         "Samsung Galaxy S23 Ultra, 180000.0, Остаток: 5",
         "Iphone 15, 210000.0, Остаток: 8",
         "Xiaomi Redmi Note 11, 31000.0, Остаток: 14",
     ]
-    assert str(answer1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт"
-    assert answer == "Смартфоны 27 шт"
-    assert answer2 == 2580000.0
+    assert str(imitation_instance_product_class) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт"
+    assert imitation_instance_category_class == "Смартфоны 27 шт"
+    assert adding_two_copies == 2580000.0
     assert imitation_smartphone_class.memory == 256
     assert imitation_smartphone_class.color == "Серый"
     assert imitation_smartphone_class.efficiency == 95.5
@@ -115,5 +97,5 @@ def test_init(products, answer, answer1, answer2, imitation_lawngrass_class, imi
     quantity_before_adding = products.count_products
     products.add_product(imitation_smartphone_class)
     products.add_product(imitation_lawngrass_class)
-    # таким образом я проверю, в __products добавлены новые элементы
+    # таким образом я проверяю, что в __products добавлены новые элементы
     assert products.count_products == quantity_before_adding + 2
