@@ -115,5 +115,5 @@ def test_init(products, answer, answer1, answer2, imitation_lawngrass_class, imi
     quantity_before_adding = products.count_products
     products.add_product(imitation_smartphone_class)
     products.add_product(imitation_lawngrass_class)
-    #таким образом я проверю, в __products добавлены новые элементы
+    # таким образом я проверю, в __products добавлены новые элементы
     assert products.count_products == quantity_before_adding + 2
