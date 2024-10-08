@@ -67,6 +67,11 @@ def imitation_instance_category_class():
 
 
 @pytest.fixture()
+def answer1():
+    return Product('Продукт1', 'Описание продукта', 1200, 10)
+
+
+@pytest.fixture()
 def adding_two_copies():
     product1 = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
@@ -77,7 +82,7 @@ def adding_two_copies():
 
 
 def test_init(products, imitation_instance_category_class, imitation_instance_product_class, adding_two_copies,
-              imitation_lawngrass_class, imitation_smartphone_class, test_for_method_add_1):
+              imitation_lawngrass_class, imitation_smartphone_class, test_for_method_add_1, answer1):
     assert products.products == [
         "Samsung Galaxy S23 Ultra, 180000.0, Остаток: 5",
         "Iphone 15, 210000.0, Остаток: 8",
@@ -99,3 +104,4 @@ def test_init(products, imitation_instance_category_class, imitation_instance_pr
     products.add_product(imitation_lawngrass_class)
     # таким образом я проверяю, что в __products добавлены новые элементы
     assert products.count_products == quantity_before_adding + 2
+    assert answer1.__repr__() == "Product('Продукт1', 'Описание продукта', 1200, 10)"
