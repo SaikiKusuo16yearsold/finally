@@ -99,9 +99,9 @@ def test_init(products, imitation_instance_category_class, imitation_instance_pr
     assert imitation_lawngrass_class.germination_period == "5 дней"
     assert imitation_lawngrass_class.color == "Темно-зеленый"
     assert test_for_method_add_1 == 2580000.0
-    quantity_before_adding = products.count_products
+    quantity_before_adding = products.product_count
     products.add_product(imitation_smartphone_class)
     products.add_product(imitation_lawngrass_class)
     # таким образом я проверяю, что в __products добавлены новые элементы
-    assert products.count_products == quantity_before_adding + 2
+    assert products.product_count == quantity_before_adding + 2
     assert answer1.__repr__() == "Product('Продукт1', 'Описание продукта', 1200, 10)"

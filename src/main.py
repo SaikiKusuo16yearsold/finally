@@ -1,10 +1,12 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
-class BaseProduct:
-    @abstractmethod
-    def __init__(self):
-        pass
+class BaseProduct(ABC):
+    def __init__(self, name, description, price, quantity):
+        self.name = name
+        self.description = description
+        self.__price = price
+        self.quantity = quantity
 
     @property
     @abstractmethod
@@ -60,16 +62,16 @@ class Product(Mixin, BaseProduct):
 
 
 class Category:
-    count_category = 0
-    count_products = 0
+    category_count = 0
+    product_count = 0
 
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
         self.__products = products
 
-        Category.count_category += 1
-        Category.count_products += len(products)
+        Category.category_count += 1
+        Category.product_count += len(products)
 
     def __str__(self):
         counter = 0
@@ -81,7 +83,7 @@ class Category:
         if issubclass(type(product), Product) or issubclass(type(product), Smartphone) or issubclass(type(product),
                                                                                                      LawnGrass):
             self.__products.append(product)
-            Category.count_products += 1
+            Category.product_count += 1
         else:
             raise TypeError
 
